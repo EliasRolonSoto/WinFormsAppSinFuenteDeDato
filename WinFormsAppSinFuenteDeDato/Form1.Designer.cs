@@ -43,6 +43,7 @@
             // 
             // buttonPanel
             // 
+            buttonPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonPanel.BackColor = SystemColors.ActiveCaption;
             buttonPanel.Controls.Add(songsDataGridView);
             buttonPanel.Location = new Point(49, 123);
@@ -54,12 +55,14 @@
             // 
             songsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             songsDataGridView.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            songsDataGridView.Location = new Point(30, 3);
+            songsDataGridView.Dock = DockStyle.Fill;
+            songsDataGridView.Location = new Point(0, 0);
             songsDataGridView.MultiSelect = false;
             songsDataGridView.Name = "songsDataGridView";
             songsDataGridView.RowTemplate.Height = 25;
-            songsDataGridView.Size = new Size(652, 321);
+            songsDataGridView.Size = new Size(716, 346);
             songsDataGridView.TabIndex = 1;
+            songsDataGridView.CellFormatting += songsDataGridView_CellFormatting;
             // 
             // Column1
             // 

@@ -17,11 +17,11 @@ namespace WinFormsAppSinFuenteDeDato
             PopulateDataGridView();
         }
 
-        
+
         private void PopulateDataGridView()
         {
 
-            string[] row0 = { "11/22/1968", "29", "Revolution 9",
+            string[] row0 = { "22/11/1968", "29", "Revolution 9",
         "Beatles", "The Beatles [White Album]" };
             string[] row1 = { "1960", "6", "Fools Rush In",
         "Frank Sinatra", "Nice 'N' Easy" };
@@ -31,10 +31,10 @@ namespace WinFormsAppSinFuenteDeDato
         "Pixies", "Surfer Rosa" };
             string[] row4 = { "5/1981", "9", "Can't Find My Mind",
         "Cramps", "Psychedelic Jungle" };
-            string[] row5 = { "6/10/2003", "13",
+            string[] row5 = { "10/6/2003", "13",
         "Scatterbrain. (As Dead As Leaves.)",
         "Radiohead", "Hail to the Thief" };
-            string[] row6 = { "6/30/1992", "3", "Dress", "P J Harvey", "Dry" };
+            string[] row6 = { "30/6/1992", "3", "Dress", "P J Harvey", "Dry" };
 
             songsDataGridView.Rows.Add(row0);
             songsDataGridView.Rows.Add(row1);
@@ -44,11 +44,11 @@ namespace WinFormsAppSinFuenteDeDato
             songsDataGridView.Rows.Add(row5);
             songsDataGridView.Rows.Add(row6);
 
-            songsDataGridView.Columns[0].DisplayIndex = 3;
-            songsDataGridView.Columns[1].DisplayIndex = 4;
-            songsDataGridView.Columns[2].DisplayIndex = 0;
-            songsDataGridView.Columns[3].DisplayIndex = 1;
-            songsDataGridView.Columns[4].DisplayIndex = 2;
+            songsDataGridView.Columns[0].DisplayIndex = 0;
+            songsDataGridView.Columns[1].DisplayIndex = 1;
+            songsDataGridView.Columns[2].DisplayIndex = 2;
+            songsDataGridView.Columns[3].DisplayIndex = 3;
+            songsDataGridView.Columns[4].DisplayIndex = 4;
         }
         //comentario de onda
         private void addNewRowButton_Click(object sender, EventArgs e)
@@ -66,5 +66,27 @@ namespace WinFormsAppSinFuenteDeDato
             }
         }
 
+        private void songsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e != null)
+            {
+                if (this.songsDataGridView.Columns[e.ColumnIndex].Name == "Column1")
+                {
+                    if (e.Value != null)
+                    {
+                        try
+                        {
+                            e.Value = DateTime.Parse(e.Value.ToString())
+                                .ToLongDateString();
+                            e.FormattingApplied = true;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("{0} is not a valid date.", e.Value.ToString());
+                        }
+                    }
+                }
+            }
+        }
     }
 }
